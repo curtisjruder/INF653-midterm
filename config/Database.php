@@ -5,7 +5,9 @@
         public function connect(){            
             $url = getenv('JAWSDB_URL');
             $dbparts = parse_url($url);
-                       
+            
+            print_r($url);
+
             $hostname = $dbparts['host'];
             $username = $dbparts['user'];
             $password = $dbparts['pass'];
