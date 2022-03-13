@@ -7,7 +7,8 @@
         private $password;
         private $database;
 
-        public function connect(){            
+
+        public function __construct(){
             $url = getenv('JAWSDB_URL');
             $dbparts = parse_url($url);
 
@@ -15,7 +16,9 @@
             $this->username = $dbparts['user'];
             $this->password = $dbparts['pass'];
             $this->database = ltrim($dbparts['path'],'/');
+        }
 
+        public function connect(){          
             try {
                 $this->$conn = new PDO("mysql:host=$this->hostname;dbname=$this->database", $this->username, $this->password);
                 $this->$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
