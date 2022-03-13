@@ -1,18 +1,23 @@
 <?php
     class Database{
         private $conn;
+    
+        private $hostname;
+        private $username;
+        private $password;
+        private $database;
 
         public function connect(){            
             $url = getenv('JAWSDB_URL');
             $dbparts = parse_url($url);
 
-            $hostname = $dbparts['host'];
-            $username = $dbparts['user'];
-            $password = $dbparts['pass'];
-            $database = ltrim($dbparts['path'],'/');
+            $this->hostname = $dbparts['host'];
+            $this->username = $dbparts['user'];
+            $this->password = $dbparts['pass'];
+            $this->database = ltrim($dbparts['path'],'/');
 
             try {
-                $this->$conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
+                $this->$conn = new PDO("mysql:host=$this->hostname;dbname=$this->database", $this->username, $this->password);
                 $this->$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 return $this->conn;
             }
