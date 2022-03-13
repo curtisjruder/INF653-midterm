@@ -37,20 +37,25 @@ class BaseModel{
     }
 
     public function echoResponse($query, $params = array()){
-        echo "echoResponse";
+        echo "\nechoResponse\n";
         $result = $this->execute($query, $params);
 
-        
+        echo "1\n";
         if($result->rowCount() == 0){
+            echo "2\n";
             $this->printMsg();
             return;
         }
 
+        echo "3\n";
         $arr = $this->convertToArray($result);
 
+        echo "4\n";
         if($this->hasId()){
+            echo "5\n";
             echo json_encode($arr[0]);
         } else{
+            echo "6\n";
             echo json_encode($arr);
         }
     }
@@ -72,6 +77,7 @@ class BaseModel{
     }
 
     private function convertToArray($result){
+        echo "convertToArray\n";
         $arr = array();
         $keys = null;
 

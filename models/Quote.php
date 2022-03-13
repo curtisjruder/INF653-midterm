@@ -21,14 +21,10 @@ class Quote extends BaseModel{
         $query = "Select q.id, quote, author, category from quotes q inner join authors a on a.id = q.authorId inner join categories c on c.id = q.categoryId";
         $arr = array();
 
-        echo "\nabout to read from within the class\n";
-
         if($this->hasId()){
-            echo "1\n";
             $query = $query . " where q.id = ?";
             $arr = array($this->id);
         } else if($this->hasParameters()) {
-            echo "2\n";
             if($this->hasAuthorId() && $this->hasCategoryId()){
                 $query = $query . " where a.id = ? AND c.id = ?";
                 $arr = array($this->authorId, $this->categoryId);
@@ -40,9 +36,7 @@ class Quote extends BaseModel{
                 $arr = array($this->categoryId);
             }
         }
-        echo "3\n";
         $query = $query . " order by q.id";
-        echo $query;
         $this->echoResponse($query, $arr);
     }
 
