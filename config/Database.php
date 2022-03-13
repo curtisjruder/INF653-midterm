@@ -5,13 +5,13 @@
         public function connect(){            
             $url = getenv('JAWSDB_URL');
             $dbparts = parse_url($url);
-            
-            print_r($url);
 
             $hostname = $dbparts['host'];
             $username = $dbparts['user'];
             $password = $dbparts['pass'];
             $database = ltrim($dbparts['path'],'/');
+
+            echo $database;
            
             try {
                 $this->$conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
