@@ -9,6 +9,7 @@
 
 
         public function __construct(){
+            echo "Constructor";
             $url = getenv('JAWSDB_URL');
             $dbparts = parse_url($url);
 
@@ -16,6 +17,7 @@
             $this->username = $dbparts['user'];
             $this->password = $dbparts['pass'];
             $this->database = ltrim($dbparts['path'],'/');
+            echo "\nConstructorEND\n";
         }
 
         public function connect(){          
