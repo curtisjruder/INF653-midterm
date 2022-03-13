@@ -11,6 +11,7 @@ class BaseModel{
     public $inputText = "";
 
     public function __construct($db, $msg){
+        echo "Inside parent class";
         $this->noRecordsMsg = $msg;
         $this->conn = $db;
         
