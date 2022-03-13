@@ -19,6 +19,8 @@ class Quote extends BaseModel{
         $query = "Select q.id, quote, author, category from quotes q inner join authors a on a.id = q.authorId inner join categories c on c.id = q.categoryId";
         $arr = array();
 
+        echo "about to read from within the class";
+
         if($this->hasId()){
             $query = $query . " where q.id = ?";
             $arr = array($this->id);

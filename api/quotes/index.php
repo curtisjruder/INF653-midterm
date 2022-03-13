@@ -22,6 +22,7 @@ echo $method;
 $quote = new Quote($db);
 
 if($method == "GET"){
+    echo "Read attempt";
     $quote->read();
 } else if($method == "POST"){
     $quote->create();
