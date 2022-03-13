@@ -10,8 +10,6 @@
             $username = $dbparts['user'];
             $password = $dbparts['pass'];
             $database = ltrim($dbparts['path'],'/');
-           
-            echo $database;
 
             try {
                 $this->$conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);

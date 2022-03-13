@@ -17,6 +17,7 @@ $database = new Database();
 $db = $database->connect();
 
 echo "\nAbout to return quotes\n";
+echo $method;
 
 $quote = new Quote($db);
 
