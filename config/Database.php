@@ -1,9 +1,9 @@
 <?php
     class Database{
-        private $host = 'localhost';
-        private $db_name = 'quotesdb';
-        private $username = 'root';
-        private $password = '';
+        private $host = 'm7az7525jg6ygibs.cbetxkdyhwsb.us-east-1.rds.amazonaws.com';
+        private $db_name = 'p5vpahtl3pwjhxaq';
+        private $username = 'dxlwbgjn3608z8ld';
+        private $password = getenv();
         private $conn;
 
         public function connect(){
