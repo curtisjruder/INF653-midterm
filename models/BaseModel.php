@@ -37,9 +37,10 @@ class BaseModel{
     }
 
     public function echoResponse($query, $params = array()){
+        echo "echoResponse";
         $result = $this->execute($query, $params);
 
-        echo "echoResponse";
+        
         if($result->rowCount() == 0){
             $this->printMsg();
             return;

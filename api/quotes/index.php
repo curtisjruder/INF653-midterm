@@ -16,15 +16,9 @@ include_once '../../models/Quote.php';
 $database = new Database();
 $db = $database->connect();
 
-echo "\nAbout to return quotes\n";
-echo $method;
-
 $quote = new Quote($db);
 
-echo "Past the quote build";
-
 if($method == 'GET'){
-    echo "Read attempt";
     $quote->read();
 } else if($method == 'POST'){
     $quote->create();

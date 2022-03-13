@@ -6,35 +6,29 @@ class Quote extends BaseModel{
     private $p_authorId = -1;
 
     public function __construct($db){
-        echo "Quote contructor\n";
-        parent::__construct($db, "No Quotes Found");      
-        
-        echo "C1\n";
-        $data = json_decode(file_get_contents("php://input"));   
-        if(!isset($data)){
-            echo "Early exit";
-            return;
-        }
-        echo "C2a\n";    
-        print_r($data); 
-        echo "C2\n";            
+        parent::__construct($db, "No Quotes Found");    
+
+        $data = json_decode(file_get_contents("php://input"));  
+        if(!isset($data)) return;
+
         if(property_exists($data, 'id')) $this->p_id = htmlspecialchars(strip_tags($data->id));            
         if(property_exists($data, 'quote')) $this->p_quote = htmlspecialchars(strip_tags($data->quote));                        
         if(property_exists($data, 'categoryId')) $this->p_catId = htmlspecialchars(strip_tags($data->categoryId));    
         if(property_exists($data, 'authorId')) $this->p_authorId = htmlspecialchars(strip_tags($data->authorId));    
-        echo "Normal exit";
     }
 
     public function read(){
         $query = "Select q.id, quote, author, category from quotes q inner join authors a on a.id = q.authorId inner join categories c on c.id = q.categoryId";
         $arr = array();
 
-        echo "about to read from within the class";
+        echo "\nabout to read from within the class\n";
 
         if($this->hasId()){
+            echo "1\n";
             $query = $query . " where q.id = ?";
             $arr = array($this->id);
         } else if($this->hasParameters()) {
+            echo "2";
             if($this->hasAuthorId() && $this->hasCategoryId()){
                 $query = $query . " where a.id = ? AND c.id = ?";
                 $arr = array($this->authorId, $this->categoryId);
@@ -46,8 +40,9 @@ class Quote extends BaseModel{
                 $arr = array($this->categoryId);
             }
         }
-
+        echo "3\n"
         $query = $query . " order by q.id";
+        echo $query;
         $this->echoResponse($query, $arr);
     }
 
