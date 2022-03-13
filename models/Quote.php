@@ -28,7 +28,7 @@ class Quote extends BaseModel{
             $query = $query . " where q.id = ?";
             $arr = array($this->id);
         } else if($this->hasParameters()) {
-            echo "2";
+            echo "2\n";
             if($this->hasAuthorId() && $this->hasCategoryId()){
                 $query = $query . " where a.id = ? AND c.id = ?";
                 $arr = array($this->authorId, $this->categoryId);
@@ -40,7 +40,7 @@ class Quote extends BaseModel{
                 $arr = array($this->categoryId);
             }
         }
-        echo "3\n"
+        echo "3\n";
         $query = $query . " order by q.id";
         echo $query;
         $this->echoResponse($query, $arr);
