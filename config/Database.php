@@ -8,22 +8,21 @@
         private $database;
 
 
-        public function __construct(){
-            echo "Constructor";
+        public function __construct(){      
             $url = getenv('JAWSDB_URL');
             $dbparts = parse_url($url);
 
             $this->hostname = $dbparts['host'];
             $this->username = $dbparts['user'];
             $this->password = $dbparts['pass'];
-            $this->database = ltrim($dbparts['path'],'/');
-            echo "\nConstructorEND\n";
+            $this->database = ltrim($dbparts['path'],'/');            
         }
 
         public function connect(){          
             try {
-                $this->$conn = new PDO("mysql:host=" . $this->hostname . ";dbname=" . $this->database, $this->username, getenv('JAWSPASS'));
+                $this->$conn = new PDO("mysql:host=" . $this->hostname . ";dbname=" . $this->database, $this->username, $this->password);
                 $this->$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                echo "Connected";
                 return $this->conn;
             }
             catch(PDOException $e)

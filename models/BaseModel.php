@@ -66,9 +66,11 @@ class BaseModel{
         print_r($this->conn);
 
         echo "\nexec2\n";
-        
+        echo "isset = " . isset($this->conn);
+
+
         $stmt = $this->conn->prepare($query);
-        echo "execute 1\n";
+        echo "\nexecute 1\n";
         for($i = 1; $i <= count($params); $i++){
             $stmt->bindParam($i, $params[$i-1]);
         }
