@@ -6,6 +6,7 @@ class Quote extends BaseModel{
     private $p_authorId = -1;
 
     public function __construct($db){
+        echo "INSIDE QUOTE";
         parent::__construct($db, "No Quotes Found");      
         
         $data = json_decode(file_get_contents("php://input"));        
@@ -13,6 +14,8 @@ class Quote extends BaseModel{
         if(property_exists($data, 'quote')) $this->p_quote = htmlspecialchars(strip_tags($data->quote));                
         if(property_exists($data, 'categoryId')) $this->p_catId = htmlspecialchars(strip_tags($data->categoryId));    
         if(property_exists($data, 'authorId')) $this->p_authorId = htmlspecialchars(strip_tags($data->authorId));    
+
+        echo "Exiting constructor";
     }
 
     public function read(){

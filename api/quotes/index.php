@@ -21,15 +21,15 @@ echo $method;
 
 $quote = new Quote($db);
 
-echo $method == "GET";
+echo "Past the quote build";
 
-if($method == "GET"){
+if($method == 'GET'){
     echo "Read attempt";
     $quote->read();
-} else if($method == "POST"){
+} else if($method == 'POST'){
     $quote->create();
-}else if($method == "PUT"){
+}else if($method == 'PUT'){
     $quote->update();
-}else if($method == "DELETE"){
+}else if($method == 'DELETE'){
     $quote->delete();
 }
