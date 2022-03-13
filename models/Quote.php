@@ -10,7 +10,9 @@ class Quote extends BaseModel{
         parent::__construct($db, "No Quotes Found");      
         
         echo "C1\n";
-        $data = json_decode(file_get_contents("php://input"));    
+        $data = json_decode(file_get_contents("php://input"));   
+        echo "C2a\n";    
+        print_r($data); 
         echo "C2\n";    
         if(property_exists($data, 'id')) $this->p_id = htmlspecialchars(strip_tags($data->id));    
         echo "C3\n";
