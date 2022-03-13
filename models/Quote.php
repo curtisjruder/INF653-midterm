@@ -11,17 +11,18 @@ class Quote extends BaseModel{
         
         echo "C1\n";
         $data = json_decode(file_get_contents("php://input"));   
+        if(!isset($data)){
+            echo "Early exit";
+            return;
+        }
         echo "C2a\n";    
         print_r($data); 
-        echo "C2\n";    
-        if(property_exists($data, 'id')) $this->p_id = htmlspecialchars(strip_tags($data->id));    
-        echo "C3\n";
-        if(property_exists($data, 'quote')) $this->p_quote = htmlspecialchars(strip_tags($data->quote));                
-        echo "C4\n";
+        echo "C2\n";            
+        if(property_exists($data, 'id')) $this->p_id = htmlspecialchars(strip_tags($data->id));            
+        if(property_exists($data, 'quote')) $this->p_quote = htmlspecialchars(strip_tags($data->quote));                        
         if(property_exists($data, 'categoryId')) $this->p_catId = htmlspecialchars(strip_tags($data->categoryId));    
-        echo "C5\n";
         if(property_exists($data, 'authorId')) $this->p_authorId = htmlspecialchars(strip_tags($data->authorId));    
-        echo "C6\n";
+        echo "Normal exit";
     }
 
     public function read(){

@@ -11,17 +11,11 @@ class BaseModel{
     public $inputText = "";
 
     public function __construct($db, $msg){
-        echo "Inside parent class\n";
         $this->noRecordsMsg = $msg;
-        echo "P1\n";
         $this->conn = $db;
-        echo "P2\n";
         if(isset($_GET['id'])){ $this->id = $_GET['id'];}
-        echo "P3\n";
         if(isset($_GET['authorId'])) $this->authorId = $_GET['authorId'];
-        echo "P4\n";
         if(isset($_GET['categoryId'])) $this->categoryId = $_GET['categoryId'];
-        echo "P5\n";
     }
 
     public function hasParameters(){
@@ -45,6 +39,7 @@ class BaseModel{
     public function echoResponse($query, $params = array()){
         $result = $this->execute($query, $params);
 
+        echo "echoResponse";
         if($result->rowCount() == 0){
             $this->printMsg();
             return;
