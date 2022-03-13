@@ -66,7 +66,11 @@ class BaseModel{
         print_r($this->conn);
 
         echo "\nexec2\n";
-        echo "isset = " . isset($this->conn);
+        if(isset($this->conn)){
+            echo "Conn is set";
+        } else{
+            echo "Conn is NOT set";
+        }
 
 
         $stmt = $this->conn->prepare($query);
