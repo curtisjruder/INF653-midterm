@@ -62,6 +62,11 @@ class BaseModel{
 
     public function execute($query, $params = array()){        
         echo "execute\n";
+        
+        print_r($this->conn);
+
+        echo "\nexec2\n";
+        
         $stmt = $this->conn->prepare($query);
         echo "execute 1\n";
         for($i = 1; $i <= count($params); $i++){

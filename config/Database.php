@@ -14,12 +14,11 @@
             try {
                 $this->$conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
                 $this->$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                return $this->conn;
             }
             catch(PDOException $e)
             {
                 echo "Connection failed: " . $e->getMessage();
-            }
-
-            return $this->conn;
+            }            
         }
     }
