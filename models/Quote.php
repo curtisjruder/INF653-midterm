@@ -52,8 +52,7 @@ class Quote extends BaseModel{
         $query = "Insert into quotes(quote, authorId, categoryId) values (?, ?, ?)";
         $this->execute($query, array($this->p_quote, $this->p_authorId, $this->p_catId));
 
-        $this->id = $this->getInsertId();
-        $this->read();
+        echo json_encode(array("id" => $this->getInsertId(), "quote" => $this->p_quote, "authorId" => $this->p_authorId, "categoryId" => $this->p_catId))
     }
 
     public function delete(){
@@ -62,9 +61,11 @@ class Quote extends BaseModel{
             return;
         }
 
+
+
         $query = "Delete from quotes where id=?";
         $this->execute($query, array($this->p_id));       
-        $this->printMsg($this->p_authorId, "id");
+        $this->printMsg($this->p_id, "id");
     }
 
     public function update(){
@@ -78,8 +79,7 @@ class Quote extends BaseModel{
         $query = "Update quotes set quote=?, authorId=?, categoryId=?  where id=?";
         $this->execute($query, array($this->p_quote, $this->p_authorId, $this->p_catId, $this->p_id));
 
-        $this->id = $this->p_id;
-        $this->read();
+        echo json_encode(array("id" => $this->p_id, "quote" => $this->p_quote, "authorId" => $this->p_authorId, "categoryId" => $this->p_catId))
     }
 
     private function isValidCreate(){
