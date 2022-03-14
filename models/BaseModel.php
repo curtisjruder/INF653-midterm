@@ -37,50 +37,28 @@ class BaseModel{
     }
 
     public function echoResponse($query, $params = array()){
-        echo "\nechoResponse\n";
         $result = $this->execute($query, $params);
 
-        echo "1\n";
         if($result->rowCount() == 0){
-            echo "2\n";
             $this->printMsg();
             return;
         }
 
-        echo "3\n";
         $arr = $this->convertToArray($result);
 
-        echo "4\n";
         if($this->hasId()){
-            echo "5\n";
             echo json_encode($arr[0]);
         } else{
-            echo "6\n";
             echo json_encode($arr);
         }
     }
 
     public function execute($query, $params = array()){        
-        echo "execute\n";
-        
-        print_r($this->conn);
-
-        echo "\nexec2\n";
-        if(isset($this->conn)){
-            echo "Conn is set";
-        } else{
-            echo "Conn is NOT set";
-        }
-
-
         $stmt = $this->conn->prepare($query);
-        echo "\nexecute 1\n";
         for($i = 1; $i <= count($params); $i++){
             $stmt->bindParam($i, $params[$i-1]);
         }
-        echo "execute 2\n";
         $stmt->execute();
-        echo "execute 3\n";
         return $stmt;  
     }
 
@@ -89,7 +67,6 @@ class BaseModel{
     }
 
     private function convertToArray($result){
-        echo "convertToArray\n";
         $arr = array();
         $keys = null;
 
