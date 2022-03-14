@@ -6,7 +6,10 @@ class Author extends BaseModel{
     public function __construct($db){
         parent::__construct($db, "authorId Not Found");   
         
-        $data = json_decode(file_get_contents("php://input"));        
+        $data = json_decode(file_get_contents("php://input"));   
+        
+        if(!isset($data)) return;
+        
         if(property_exists($data, 'authorId')) $this->p_authorId = htmlspecialchars(strip_tags($data->authorId));    
         if(property_exists($data, 'author')) $this->p_author = htmlspecialchars(strip_tags($data->author));        
     }

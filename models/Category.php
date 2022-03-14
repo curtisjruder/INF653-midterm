@@ -7,7 +7,10 @@ class Category extends BaseModel{
     public function __construct($db){
         parent::__construct($db, "categoryId Not Found");       
 
-        $data = json_decode(file_get_contents("php://input"));        
+        $data = json_decode(file_get_contents("php://input"));    
+        
+        if(!isset($data)) return;
+        
         if(property_exists($data, 'categoryId')) $this->p_catId = htmlspecialchars(strip_tags($data->categoryId));    
         if(property_exists($data, 'category')) $this->p_cat = htmlspecialchars(strip_tags($data->category));        
     }
@@ -78,7 +81,7 @@ class Category extends BaseModel{
             $this->printMsg("categoryId Not Found");
             return false;
         }
-        
+
         return true;
     }
 }
