@@ -61,7 +61,7 @@ class Quote extends BaseModel{
             return;
         }
 
-
+        if(!$this->isValidQuoteID()) return;
 
         $query = "Delete from quotes where id=?";
         $this->execute($query, array($this->p_id));       
@@ -75,6 +75,7 @@ class Quote extends BaseModel{
         }
 
         if(!$this->isValid()) return;
+        if(!$this->isValidQuoteID()) return;
 
         $query = "Update quotes set quote=?, authorId=?, categoryId=?  where id=?";
         $this->execute($query, array($this->p_quote, $this->p_authorId, $this->p_catId, $this->p_id));
@@ -101,6 +102,15 @@ class Quote extends BaseModel{
 
         if(!$this->hasData("Select * from authors where id=?", array($this->p_authorId))){
             $this->printMsg("authorId Not Found");
+            return false;
+        }
+        
+        return true;
+    }
+
+    private function isValidQuoteID(){
+        if(!$this->hasData("Select * from quotes where id=?", array($this->p_id))){
+            $this->printMsg();
             return false;
         }
 

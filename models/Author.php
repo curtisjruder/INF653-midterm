@@ -9,8 +9,8 @@ class Author extends BaseModel{
         $data = json_decode(file_get_contents("php://input"));   
         
         if(!isset($data)) return;
-        
-        if(property_exists($data, 'authorId')) $this->p_authorId = htmlspecialchars(strip_tags($data->authorId));    
+
+        if(property_exists($data, 'id')) $this->p_authorId = htmlspecialchars(strip_tags($data->id));    
         if(property_exists($data, 'author')) $this->p_author = htmlspecialchars(strip_tags($data->author));        
     }
    

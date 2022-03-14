@@ -10,8 +10,8 @@ class Category extends BaseModel{
         $data = json_decode(file_get_contents("php://input"));    
         
         if(!isset($data)) return;
-        
-        if(property_exists($data, 'categoryId')) $this->p_catId = htmlspecialchars(strip_tags($data->categoryId));    
+
+        if(property_exists($data, 'id')) $this->p_catId = htmlspecialchars(strip_tags($data->id));    
         if(property_exists($data, 'category')) $this->p_cat = htmlspecialchars(strip_tags($data->category));        
     }
 
